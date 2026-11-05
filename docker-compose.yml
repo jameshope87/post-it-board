@@ -1,6 +1,10 @@
 services:
   postit:
-    build: .
+    build:
+      context: .
+      # Build on the host's network: on some VPSs npm downloads stall on Docker's
+      # build network. This only affects building, not the running container.
+      network: host
     container_name: postit-board
     restart: unless-stopped
     init: true
