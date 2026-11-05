@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Post-it Board</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body class="student">
+
+  <!-- Step 1: enter the code -->
+  <section id="join-screen" class="screen center">
+    <div class="card">
+      <h1>Post-it Board</h1>
+      <p>Enter the code on your teacher's screen.</p>
+      <form id="join-form" autocomplete="off">
+        <label for="code">Board code</label>
+        <input id="code" class="code-input" inputmode="text" autocapitalize="characters"
+               spellcheck="false" maxlength="8" placeholder="ABC123" required>
+        <button type="submit" id="join-btn">Join</button>
+      </form>
+      <p id="join-msg" class="msg" role="alert"></p>
+    </div>
+  </section>
+
+  <!-- Step 2: write notes -->
+  <section id="write-screen" class="screen center" hidden>
+    <div class="card wide">
+      <p id="prompt" class="student-prompt" hidden></p>
+      <p id="locked-banner" class="banner" hidden>Your teacher has paused new notes. Please wait…</p>
+      <p id="conn-banner" class="banner warn" hidden>Reconnecting…</p>
+
+      <form id="note-form">
+        <label for="note-text">Your note <span class="hint">(anonymous)</span></label>
+        <div class="toolbar">
+          <button type="button" id="bullet-btn" class="small">• Bullet point</button>
+          <span id="counter" class="hint">0 / 300</span>
+        </div>
+        <textarea id="note-text" maxlength="300" rows="6" required
+                  placeholder="Type your idea here…"></textarea>
+
+        <fieldset class="colours">
+          <legend>Colour</legend>
+          <div id="colour-list" class="colour-list"></div>
+        </fieldset>
+
+        <button type="submit" id="post-btn">Post note</button>
+      </form>
+      <p id="note-msg" class="msg" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- Board closed -->
+  <section id="closed-screen" class="screen center" hidden>
+    <div class="card">
+      <h1>Board closed</h1>
+      <p id="closed-msg">This board has been closed. Thanks for taking part!</p>
+    </div>
+  </section>
+
+  <script src="common.js"></script>
+  <script src="student.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+# Dependencies (reinstalled by npm / Docker)
+node_modules/
+
+# Secrets - contains the teacher passphrase. Keep .env.example committed.
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Claude Code local settings
+.claude/settings.local.json

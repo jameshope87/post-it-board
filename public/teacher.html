@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Post-it Board · Teacher</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body class="teacher">
+
+  <!-- Create a board -->
+  <section id="start-screen" class="screen center">
+    <div class="card">
+      <h1>Post-it Board</h1>
+      <p>Create a live board for your class. Boards close automatically when you're finished.</p>
+      <form id="create-form">
+        <label for="pass">Teacher passphrase</label>
+        <input id="pass" type="password" autocomplete="current-password" required>
+        <button type="submit" id="create-btn">Create board</button>
+      </form>
+      <p id="start-msg" class="msg" role="alert"></p>
+    </div>
+  </section>
+
+  <!-- The board -->
+  <section id="board-screen" class="screen board-screen" hidden>
+    <header class="topbar">
+      <input id="prompt" class="prompt" maxlength="200"
+             placeholder="Click to type a question or prompt for the class…" aria-label="Board prompt">
+      <button id="join-btn" class="join-chip" title="Show join instructions">
+        Code <strong id="code-small"></strong>
+      </button>
+      <span class="stat" title="Students connected"><span id="student-count">0</span> joined</span>
+      <div class="actions">
+        <button id="queue-btn" class="queue-btn" aria-expanded="true">
+          To approve <span id="pending-count" class="badge">0</span>
+        </button>
+        <button id="lock-btn">Lock</button>
+        <button id="save-btn">Save image</button>
+        <button id="clear-btn">Clear</button>
+        <button id="close-btn" class="danger">Close board</button>
+      </div>
+    </header>
+
+    <div class="workspace">
+      <main id="board" class="board" aria-label="Approved notes">
+        <p id="empty-hint" class="empty-hint">Approved notes appear here. Drag them to arrange.</p>
+        <p id="locked-banner" class="board-banner" hidden>🔒 Board locked: students can't post</p>
+      </main>
+
+      <aside id="queue" class="queue" aria-label="Notes waiting for approval">
+        <div class="queue-head">
+          <h2>Waiting for approval</h2>
+          <button id="approve-all" class="small">Approve all</button>
+        </div>
+        <label class="blur-toggle">
+          <input type="checkbox" id="blur-toggle" checked>
+          Blur notes until I hover over them
+        </label>
+        <ul id="queue-list" class="queue-list"></ul>
+        <p id="queue-empty" class="hint">No notes waiting.</p>
+      </aside>
+    </div>
+
+    <footer class="statusbar">
+      <span id="conn-status"></span>
+      <span id="expires"></span>
+    </footer>
+  </section>
+
+  <!-- Join instructions (for the projector) -->
+  <div id="join-overlay" class="overlay" hidden>
+    <div class="join-panel">
+      <p class="join-step">Go to</p>
+      <p id="join-url" class="join-url"></p>
+      <p class="join-step">and enter code</p>
+      <p id="join-code" class="join-code"></p>
+      <img id="join-qr" class="join-qr" alt="QR code to join the board" width="260" height="260">
+      <button id="join-close">Start</button>
+    </div>
+  </div>
+
+  <script src="common.js"></script>
+  <script src="teacher.js"></script>
+</body>
+</html>
